@@ -1,6 +1,6 @@
 {
   "name": "vuejsfirebaseandvuetify",
-  "short_name": "vuejsfirebaseandvuetify",
+  "short_name": "Firebase + Vuetify",
   "icons": [
     {
       "src": "./img/icons/android-chrome-192x192.png",

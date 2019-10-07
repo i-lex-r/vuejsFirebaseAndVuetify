@@ -1,5 +1,6 @@
 {
   "name": "vuejsfirebaseandvuetify",
+  "author": "i-lex-r",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,10 +10,13 @@
   },
   "dependencies": {
     "core-js": "^2.6.5",
+    "firebase": "^7.1.0",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
-    "vuex": "^3.0.1"
+    "vuetify": "^2.1.1",
+    "vuex": "^3.0.1",
+    "vuexfire": "^3.1.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",
@@ -22,24 +26,15 @@
     "@vue/eslint-config-prettier": "^5.0.0",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
+    "eslint-plugin-es-beautifier": "^1.0.1",
     "eslint-plugin-prettier": "^3.1.0",
     "eslint-plugin-vue": "^5.0.0",
     "prettier": "^1.18.2",
-    "vue-template-compiler": "^2.6.10"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "@vue/prettier"
-    ],
-    "rules": {},
-    "parserOptions": {
-      "parser": "babel-eslint"
-    }
+    "sass": "^1.17.4",
+    "sass-loader": "^7.1.0",
+    "vue-cli-plugin-vuetify": "^0.6.3",
+    "vue-template-compiler": "^2.6.10",
+    "vuetify-loader": "^1.2.2"
   },
   "postcss": {
     "plugins": {
