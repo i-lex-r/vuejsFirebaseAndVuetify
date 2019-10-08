@@ -1,0 +1,41 @@
+html,
+body {
+  -webkit-overflow-scrolling: touch;
+  text-size-adjust: 100%;
+}
+html {
+  overflow-y: auto;
+}
+@-ms-viewport {
+  width: 375px;
+}
+@-webkit-viewport {
+  width: 375px;
+}
+@-moz-viewport {
+  width: 375px;
+}
+@-o-viewport {
+  width: 375px;
+}
+@viewport {
+  width: 375px;
+}
+
+@media screen and (min-width: 376px) {
+  @-ms-viewport {
+    width: device-width;
+  }
+  @-webkit-viewport {
+    width: device-width;
+  }
+  @-moz-viewport {
+    width: device-width;
+  }
+  @-o-viewport {
+    width: device-width;
+  }
+  @viewport {
+    width: device-width;
+  }
+}

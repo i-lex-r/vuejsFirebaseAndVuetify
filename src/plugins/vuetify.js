@@ -1,8 +1,18 @@
 import Vue from "vue";
-import Vuetify from "vuetify/lib";
+import Vuetify, {
+  VApp,
+  VContent, 
+  VContainer,
+} from "vuetify/lib";
 import ru from "vuetify/es5/locale/ru";
 
-Vue.use(Vuetify);
+Vue.use(Vuetify, {
+  components: {
+    VApp,
+    VContent,
+    VContainer,
+  }
+});
 
 export default new Vuetify({
   lang: {

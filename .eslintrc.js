@@ -3,17 +3,17 @@ module.exports = {
   env: {
     node: true
   },
-  plugins: ["es-beautifier"],
-  extends: [
-    "plugin:vue/essential",
-    "plugin:es-beautifier/standard",
-    "@vue/prettier"
-  ],
+  plugins: ["vue", "prettier"],
+  extends: ["plugin:vue/recommended", "prettier", "prettier/standard", "prettier/vue"],
   rules: {
-    "no-console": process.env.NODE_ENV === "production" ? "error" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "error" : "off",
-    "comma-dangle": ["error", "never"],
-    "linebreak-style": "off"
+    "vue/name-property-casing": "off",
+    "vue/max-attributes-per-line": ["error", {
+      "singleline": 1,
+      "multiline": {
+        "max": 1,
+        "allowFirstLine": false
+      }
+    }]
   },
   parser: "vue-eslint-parser",
   parserOptions: {
