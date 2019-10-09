@@ -86,7 +86,7 @@ const getNavList = () => {
       return {
         href: i.path,
         title: i.title,
-        icon: i.navItemIcon
+        icon: i.meta.navItemIcon
       };
     });
 };
