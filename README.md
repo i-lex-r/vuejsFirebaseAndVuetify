@@ -1,4 +1,4 @@
-# vuejsfirebaseandvuetify
+# vuejs: firebase and vuetify
 
 Project deployed on [FirebaseHosting](https://i-lex-r-test-app1.web.app/).
 
