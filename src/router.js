@@ -80,7 +80,7 @@ const getNavList = () => {
   return routes
     .filter(i => i.meta && i.meta.navItem)
     .sort((a, b) => {
-      return a.navItemOrder > b.navItemOrder ? 1 : -1;
+      return a.meta.navItemOrder > b.meta.navItemOrder ? 1 : -1;
     })
     .map(i => {
       return {

@@ -8,6 +8,7 @@
       fixed
       dark
       src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
+      :style="{ top: 0, bottom: 0, height: undefined }"
     >
       <template #prepend>
         <v-list-item>
