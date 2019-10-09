@@ -1,5 +1,7 @@
 # vuejsfirebaseandvuetify
 
+Project deployed on [FirebaseHosting](https://i-lex-r-test-app1.web.app/).
+
 ## Project setup
 ```
 npm install
