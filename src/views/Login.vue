@@ -29,7 +29,7 @@
         autofocus
         outlined
         prepend-icon="mdi-account"
-        suffix="@test.com"
+        :suffix="emailDomain"
         label="Логин"
         placeholder=""
         :hint="!email ? 'Введите ваш рабочий email' : ''"
@@ -102,6 +102,7 @@ import AuthLayout from "@/layouts/Auth";
 
 const emailMinLength = 5;
 const passMinLength = 8;
+const emailDomain = "@test.com";
 
 export default {
   name: "views_Login",
@@ -113,6 +114,7 @@ export default {
     valid: false,
     email: "",
     emailMinLength,
+    emailDomain,
     emailRules: [
       v => !!v || "Введите ваш рабочий e-mail",
       v =>
@@ -138,7 +140,7 @@ export default {
     userLogin() {
       if (this.$refs.form.validate()) {
         this.processing = true;
-        this.login({ email: `${this.email}@mail.ru`, pass: this.pass })
+        this.login({ email: `${this.email}${emailDomain}`, pass: this.pass })
           .catch(err => {
             this.loginError = err;
             this.showLoginError = true;

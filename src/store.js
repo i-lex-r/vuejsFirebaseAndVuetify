@@ -20,6 +20,7 @@ const store = new Vuex.Store({
     storeConnected: false
   },
   getters: {
+    userId: state => state.user && state.user.uid || null,
     userKey: state => {
       if (state.user && state.user.email) {
         return state.user.email.split("@")[0];
@@ -90,9 +91,8 @@ const store = new Vuex.Store({
         bindFirestoreRef("tasks", db.collection("tasks")),
         bindFirestoreRef(
           "userProfile",
-          db.collection("users").doc(getters.userKey)
-        ),
-        bindFirestoreRef("usersTokens", db.collection("fcmTokens"))
+          db.collection("users").doc(getters.userId)
+        )
       ])
     ),
     unbindUserData: firestoreAction(({ unbindFirestoreRef }) => {

@@ -12,12 +12,8 @@ Vue.use(Router);
 
 const routes = [
   {
-    path: "*",
-    redirect: "/login"
-  },
-  {
     path: "/",
-    redirect: "/login"
+    redirect: "/dashboard"
   },
   {
     path: "/login",
@@ -39,7 +35,7 @@ const routes = [
   {
     path: "/messages",
     name: "Messages",
-    title: "Задачи",
+    title: "Сообщения",
     component: Messages,
     meta: {
       requiresAuth: true,
@@ -71,12 +67,18 @@ const routes = [
       navItemOrder: 3,
       navItemIcon: "mdi-account"
     }
+  },
+  {
+    path: "*",
+    redirect: {
+      name: "Dashboard"
+    }
   }
 ];
 
 const getNavList = () => {
   return routes
-    .filter(i => i.meta.navItem)
+    .filter(i => i.meta && i.meta.navItem)
     .sort((a, b) => {
       return a.navItemOrder > b.navItemOrder ? 1 : -1;
     })
@@ -95,11 +97,27 @@ const router = new Router({
   routes
 });
 
-auth.onAuthStateChanged(user => {
-  const { name } = router.currentRoute;
-  // if ((user && name === "Login") || (!user && name !== "Login")) {
-  //   router.go();
-  // }
+let prevUserData = null;
+router.onReady(() => {
+  auth.onAuthStateChanged(user => {
+    const { name } = router.currentRoute;
+
+    // 1) simple auth processing
+    /* if (prevUserData !== user) {
+      router.go();
+    } */
+
+    // 2) separate processing
+    // handle login
+    if (!prevUserData && user && name === "Login") {
+      router.go(-1);
+    }
+    // handle logout
+    if (prevUserData && !user) {
+      router.push({ name: "Login" });
+    }
+    prevUserData = user;
+  });
 });
 
 router.beforeEach((to, from, next) => {
@@ -112,15 +130,9 @@ router.beforeEach((to, from, next) => {
       query: { redirect: to.fullPath }
     });
   } else if (currentUser && to.name === "Login") {
-    next({
-      name: "Dashboard"
-    });
+    next(to.query.redirect || { name: "Dashboard" });
   } else {
-    if (to.query.redirect) {
-      next(to.query.redirect);
-    } else {
-      next();
-    }
+    next();
   }
 });
 

@@ -9,7 +9,7 @@
       dark
       src="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
     >
-      <template v-slot:prepend>
+      <template #prepend>
         <v-list-item>
           <v-list-item-content>
             <v-list-item-title class="title">
@@ -29,7 +29,7 @@
       <v-list :dark="false">
         <v-list-item
           v-for="item in navItems"
-          :key="item.title"
+          :key="item.href"
           link
           :to="item.href"
         >
@@ -43,7 +43,7 @@
         </v-list-item>
       </v-list>
 
-      <template v-slot:append>
+      <template #append>
         <div class="pa-2">
           <v-btn
             block
