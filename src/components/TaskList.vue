@@ -155,7 +155,7 @@
 
 <script>
 export default {
-  name: "ComponentsTaskList",
+  name: "components_TaskList",
   props: {
     completed: {
       type: Boolean,

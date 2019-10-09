@@ -39,3 +39,8 @@ html {
     width: device-width;
   }
 }
+
+/* Fix bugs  */
+.v-card__title {
+  word-break: break-word;
+}

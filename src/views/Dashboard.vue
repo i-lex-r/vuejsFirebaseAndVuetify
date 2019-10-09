@@ -15,10 +15,9 @@
               У вас пока нет задач.
             </v-alert>
           </template>
+
           <template v-else>
-            <h2 class="title mb-2">
-              Текущие
-            </h2>
+            <h2 class="title mb-2">Текущие</h2>
             <TaskList
               :items="userWorkTasks"
               :item-processing-id="processingTaskId"
@@ -26,9 +25,7 @@
               @update="processTask"
             />
 
-            <h2 class="title mt-4 mb-2">
-              Выполненные
-            </h2>
+            <h2 class="title mt-4 mb-2">Выполненные</h2>
             <TaskList
               completed
               :items="userCompleteTasks"
@@ -79,7 +76,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 import MainLayout from "@/layouts/Main";
 import TaskList from "@/components/TaskList";
 
@@ -96,15 +93,15 @@ export default {
   }),
 
   computed: {
-    ...mapGetters(["userTasks"]),
+    ...mapState(["tasks"]),
     userWorkTasks() {
-      return this.userTasks.filter(i => i.status !== "complete");
+      return this.tasks.filter(i => i.status !== "complete");
     },
     userCompleteTasks() {
-      return this.userTasks.filter(i => i.status === "complete");
+      return this.tasks.filter(i => i.status === "complete");
     },
     userNoTasks() {
-      return !this.userTasks.length;
+      return !this.tasks.length;
     },
     selectedTask() {
       if (this.selectedTaskId) {

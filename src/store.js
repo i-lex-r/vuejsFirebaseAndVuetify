@@ -20,19 +20,7 @@ const store = new Vuex.Store({
     storeConnected: false
   },
   getters: {
-    userId: state => state.user && state.user.uid || null,
-    userKey: state => {
-      if (state.user && state.user.email) {
-        return state.user.email.split("@")[0];
-      }
-      return null;
-    },
-    userTasks: (state, getters) => {
-      if (state.user && getters.userKey) {
-        return state.tasks.filter(task => task.executor === getters.userKey);
-      }
-      return [];
-    }
+    userId: state => (state.user && state.user.uid) || null
   },
   mutations: {
     setUser(state, val) {
@@ -64,10 +52,7 @@ const store = new Vuex.Store({
             resolve();
           },
           err => {
-            reject(
-              (err && (authErrCodes[err.code] || err.message)) ||
-                "Произошла непредвиденная ошибка."
-            );
+            reject((err && (authErrCodes[err.code] || err.message)) || "Произошла непредвиденная ошибка.");
           }
         );
       });
@@ -88,11 +73,14 @@ const store = new Vuex.Store({
     },
     bindUserData: firestoreAction(({ getters, bindFirestoreRef }) =>
       Promise.all([
-        bindFirestoreRef("tasks", db.collection("tasks")),
         bindFirestoreRef(
-          "userProfile",
-          db.collection("users").doc(getters.userId)
-        )
+          "tasks",
+          db
+            .collection("tasks")
+            .where("executor", "==", getters.userId)
+            .orderBy("createdAt", "desc")
+        ),
+        bindFirestoreRef("userProfile", db.collection("users").doc(getters.userId))
       ])
     ),
     unbindUserData: firestoreAction(({ unbindFirestoreRef }) => {

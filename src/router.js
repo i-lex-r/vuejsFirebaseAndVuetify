@@ -12,15 +12,12 @@ Vue.use(Router);
 
 const routes = [
   {
-    path: "/",
-    redirect: "/dashboard"
-  },
-  {
     path: "/login",
     name: "Login",
     component: Login
   },
   {
+    alias: "/",
     path: "/dashboard",
     name: "Dashboard",
     title: "Задачи",

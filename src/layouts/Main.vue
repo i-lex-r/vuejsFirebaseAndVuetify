@@ -189,7 +189,6 @@ export default {
 </script>
 <style>
 .navBarFixSize {
-  top: 0;
   bottom: 0;
   height: auto !important;
 }
